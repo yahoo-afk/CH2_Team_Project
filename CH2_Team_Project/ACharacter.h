@@ -10,19 +10,19 @@ using namespace std;
 class ACharacter
 {
 public:
-    ACharacter();
+    ACharacter(string NewName,int NewHp, int NewAtk);
     ~ACharacter();
 
 protected:
-   
     string Name;
     int Hp;
     int Atk;
-   
+    
 public:
-    void Attack();
+    void Attack(ACharacter* Target);
     void TakeDamage(int DemageAmount);
-  
-
-
+    int GetHp();
+    int GetAttack();
+    bool isDead();
+    string GetName();
 };

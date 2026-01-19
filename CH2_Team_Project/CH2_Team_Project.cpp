@@ -1,18 +1,34 @@
 ﻿#include "ACharacter.h"
+#include <windows.h>
 
 int main()
 {
-    // 1. 캐릭터 생성
-    ACharacter* MyChar = new ACharacter();
+    ACharacter* Player = new ACharacter("용사",200,15);
+    ACharacter* Monster = new ACharacter("괴물", 100, 10);
 
-    // 2. 공격 테스트
-    MyChar->Attack();
+    cout << "===========데스매치 시작============" << endl;
 
-    // 3. 피격 테스트 (데미지 30을 줘봅시다)
-    MyChar->TakeDamage(30);
+    Sleep(1000);
 
-    // 4. 삭제
-    delete MyChar;
-
+    while (!Player->isDead()&&!Monster->isDead()) 
+    {
+        Player->Attack(Monster);
+        if(Monster->isDead())
+        {
+            cout << "몬스터가 쓰러졌습니다" << endl;
+            cout << "승리했습니다!! 우리의영웅 용사!!" << endl;
+            break;
+        }
+        Sleep(500);
+        Monster->Attack(Player);
+        if(Player->isDead())
+        {
+            cout << "용사는 쓰러졌다 패배했습니다" << endl;
+            break;
+        }
+    }
+    Sleep(1000);
+    delete Player;
+    delete Monster;
     return 0;
 }
