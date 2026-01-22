@@ -29,5 +29,8 @@
     <ClInclude Include="ACharacter.h">
       <Filter>Character</Filter>
     </ClInclude>
+    <ClInclude Include="Type.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

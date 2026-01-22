@@ -3,8 +3,8 @@
 
 int main()
 {
-    ACharacter* Player = new ACharacter("용사",200,15);
-    ACharacter* Monster = new ACharacter("괴물", 100, 10);
+    ACharacter* Player = new ACharacter("용사",200,15,10,10);
+    ACharacter* Monster = new ACharacter("괴물", 100, 10,5,10);
 
     cout << "===========데스매치 시작============" << endl;
 
