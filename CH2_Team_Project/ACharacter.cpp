@@ -49,7 +49,6 @@ void ACharacter::TakeDamage(int DamageAmount)
 		Hp -= 1;
 		cout << Name << "가 " << 1 << "의 피해를 입었습니다." << endl;
 		cout << "공격력이 상대의 방어력과 같거나 낮습니다 " << endl;
-		cout<< GetName() << " 남은체력:" << Hp << endl;
 	}
 	else
 	{
@@ -59,8 +58,8 @@ void ACharacter::TakeDamage(int DamageAmount)
 		{
 			Hp = 0;
 		}
-		cout << GetName() << " 남은체력:" << Hp << endl;
 	}
+		cout << GetName() << " 남은체력:" << Hp << endl;
 }
 
 int ACharacter::GetHp()
