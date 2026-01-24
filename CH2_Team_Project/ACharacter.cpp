@@ -23,6 +23,8 @@ ACharacter::~ACharacter()
 
 void ACharacter::Attack(ACharacter* Target)
 {
+	//Atk로 직접 접근해도 좋고, 지역변수에 값을 넣어 호출해도 좋습니다.
+	
 	if(dis(gen) <= Critical) //1~10사이의 숫자가 나오면 
 	{
 		cout << Name << "이(가)강력하게 공격합니다" << endl;
@@ -58,7 +60,7 @@ void ACharacter::TakeDamage(int DamageAmount)
 		{
 			Hp = 0;
 		}
-	}
+	}// 
 		cout << GetName() << " 남은체력:" << Hp << endl;
 }
 
@@ -72,14 +74,17 @@ string ACharacter::GetName()
 	return Name;
 }
 
+//코딩 스타일 수정
 bool ACharacter::isDead()
 {
 	if ( Hp>0)
 	{
 		return false;
-	}
+	} //else 제거 가능
 	else if(Hp <=0)
 	{
 		return true;
 	}
+	
+	// return 문 누락
 }

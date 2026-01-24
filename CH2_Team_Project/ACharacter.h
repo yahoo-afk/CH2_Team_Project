@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//주석 제거 합시다.
+
 // [Mission 1] 클래스 선언
 // 언리얼 표준: 클래스 이름은 'A'로 시작합니다.
 class ACharacter
@@ -23,7 +25,10 @@ protected:
     
 public:
     void Attack(ACharacter* Target);
+    //오타 수정
     void TakeDamage(int DemageAmount);
+    
+    //간단한 게터는 헤더에 구현하는 것을 권장합니다.
     int GetHp();
     int GetAttack();
     bool isDead();
