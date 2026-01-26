@@ -1,90 +1,66 @@
-#include "ACharacter.h"
+ï»¿#include "ACharacter.h"
 #include <random>
 
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dis(1, 100);
 
-ACharacter::ACharacter(string NewName, int NewHp, int NewAtk, int NewDef, int NewCritical)
+ACharacter::ACharacter(string NewName, const FUnitStat& NewStat)
 {
 	Name = NewName;
-	Hp = NewHp;
-	Atk = NewAtk;
-	Def = NewDef;
-	Critical = NewCritical;
-
-	cout << "ACharacter »ý¼ºµÊ: " << Name << " (HP: " << Hp << ")" << endl;
+	Stat = NewStat;
+	cout << "ACharacter ìƒì„±ë¨: " << Name << " (HP: " << Stat.Hp << ")" << endl;
 }
 
 ACharacter::~ACharacter()
 {
-	cout << "ACharacter ¼Ò¸êµÊ" << endl;
+	cout << "ACharacter ì†Œë©¸ë¨" << endl;
 }
 
 void ACharacter::Attack(ACharacter* Target)
 {
-	//Atk·Î Á÷Á¢ Á¢±ÙÇØµµ ÁÁ°í, Áö¿ªº¯¼ö¿¡ °ªÀ» ³Ö¾î È£ÃâÇØµµ ÁÁ½À´Ï´Ù.
-	
-	if(dis(gen) <= Critical) //1~10»çÀÌÀÇ ¼ýÀÚ°¡ ³ª¿À¸é 
+	//Atkë¡œ ì§ì ‘ ì ‘ê·¼í•´ë„ ì¢‹ê³ , ì§€ì—­ë³€ìˆ˜ì— ê°’ì„ ë„£ì–´ í˜¸ì¶œí•´ë„ ì¢‹ìŠµë‹ˆë‹¤.
+
+	if (dis(gen) <= Stat.Critical) //1~10ì‚¬ì´ì˜ ìˆ«ìžê°€ ë‚˜ì˜¤ë©´ 
 	{
-		cout << Name << "ÀÌ(°¡)°­·ÂÇÏ°Ô °ø°ÝÇÕ´Ï´Ù" << endl;
-		Target->TakeDamage(GetAttack() * 1.5);
+		cout << Name << "ì´(ê°€)ê°•ë ¥í•˜ê²Œ ê³µê²©í•©ë‹ˆë‹¤" << endl;
+		Target->TakeDamage(GetAtk() * 1.5);
 	}
 	else
 	{
-		cout << Name << "ÀÌ(°¡) °ø°ÝÇÕ´Ï´Ù" << endl;
-		Target->TakeDamage(GetAttack());
+		cout << Name << "ì´(ê°€) ê³µê²©í•©ë‹ˆë‹¤" << endl;
+		Target->TakeDamage(GetAtk());
 	}
-}
-
-int ACharacter::GetAttack()
-{
-	return Atk;
 }
 
 void ACharacter::TakeDamage(int DamageAmount)
-{	
-	DamageAmount -= Def;
-
-	if(DamageAmount  <= 0)
+{
+	DamageAmount -= Stat.Def;
+	if (DamageAmount <= 0)
 	{
-		Hp -= 1;
-		cout << Name << "°¡ " << 1 << "ÀÇ ÇÇÇØ¸¦ ÀÔ¾ú½À´Ï´Ù." << endl;
-		cout << "°ø°Ý·ÂÀÌ »ó´ëÀÇ ¹æ¾î·Â°ú °°°Å³ª ³·½À´Ï´Ù " << endl;
+		Stat.Hp -= 1;
+		cout << Name << "ê°€ " << 1 << "ì˜ í”¼í•´ë¥¼ ìž…ì—ˆìŠµë‹ˆë‹¤." << endl;
+		cout << "ê³µê²©ë ¥ì´ ìƒëŒ€ì˜ ë°©ì–´ë ¥ê³¼ ê°™ê±°ë‚˜ ë‚®ìŠµë‹ˆë‹¤ " << endl;
 	}
 	else
 	{
-		Hp -= DamageAmount;
-		cout << Name << "°¡ " << DamageAmount  << "ÀÇ ÇÇÇØ¸¦ ÀÔ¾ú½À´Ï´Ù." << endl;
+		Stat.Hp -= DamageAmount;
+		cout << Name << "ê°€ " << DamageAmount << "ì˜ í”¼í•´ë¥¼ ìž…ì—ˆìŠµë‹ˆë‹¤." << endl;
 		if (isDead())
 		{
-			Hp = 0;
+			Stat.Hp = 0;
 		}
-	}// 
-		cout << GetName() << " ³²ÀºÃ¼·Â:" << Hp << endl;
+	}
+	cout << GetName() << " ë‚¨ì€ì²´ë ¥:" << Stat.Hp << endl;
 }
 
-int ACharacter::GetHp()
-{
-	return Hp;
-}
-
-string ACharacter::GetName()
-{
-	return Name;
-}
-
-//ÄÚµù ½ºÅ¸ÀÏ ¼öÁ¤
 bool ACharacter::isDead()
 {
-	if ( Hp>0)
+	if (Stat.Hp > 0)
 	{
 		return false;
-	} //else Á¦°Å °¡´É
-	else if(Hp <=0)
-	{
-		return true;
 	}
-	
-	// return ¹® ´©¶ô
+	return true;
 }
+
+

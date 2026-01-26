@@ -124,10 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ACharacter.cpp" />
+    <ClCompile Include="AMonster.cpp" />
     <ClCompile Include="CH2_Team_Project.cpp" />
+    <ClCompile Include="APlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ACharacter.h" />
+    <ClInclude Include="AMonster.h" />
+    <ClInclude Include="APlayer.h" />
     <ClInclude Include="Type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
