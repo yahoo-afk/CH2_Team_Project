@@ -8,16 +8,11 @@ class ACharacter
 {
 public:
 	ACharacter(string NewName, const FUnitStat& NewStat);
-	~ACharacter();
-
-protected:
-	string Name;
-	FUnitStat Stat;
-
-public:
+	virtual ~ACharacter();
 	void Attack(ACharacter* Target);
 	void TakeDamage(int DamageAmount);
 	bool isDead();
+
 	string GetName()
 	{
 		return Name;
@@ -30,4 +25,9 @@ public:
 	{
 		return Stat.Atk;
 	}
+
+protected:
+	string Name;
+	FUnitStat Stat;
+
 };

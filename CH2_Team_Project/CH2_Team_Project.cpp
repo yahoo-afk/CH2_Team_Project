@@ -1,19 +1,14 @@
 ﻿#include "ACharacter.h"
+#include "AMonster.h"
+#include "APlayer.h"
 #include <windows.h>
 
 int main()
 {
-	FUnitStat MonsterStat;
-	MonsterStat.Hp = 100;
-	MonsterStat.Atk = 15;
-	MonsterStat.Def = 5;
-	MonsterStat.Critical = 10;
-
-	ACharacter* Player = new ACharacter("용사", {200,15,10,10});
-	ACharacter* Monster = new ACharacter("괴물", MonsterStat);
+	APlayer* Player = new APlayer("용사", { 150, 20, 10,10 });	
+	AMonster* Monster = new AMonster("슬라임", { 100,15,5,10 });
 
 	cout << "===========데스매치 시작============" << endl;
-
 	Sleep(1000);
 
 	while (!Player->isDead() && !Monster->isDead())

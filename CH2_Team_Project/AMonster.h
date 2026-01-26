@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "ACharacter.h"
-class AMonster : ACharacter
+class AMonster : public ACharacter
 {
+public:
 	AMonster(string NewName, const FUnitStat& NewStat);
-
+	~AMonster()override;
 };
-
