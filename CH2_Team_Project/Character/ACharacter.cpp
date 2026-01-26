@@ -1,0 +1,56 @@
+﻿#include "ACharacter.h"
+#include <random>
+
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<int> dis(1, 100);
+
+ACharacter::ACharacter(const string& NewName, const FUnitStat& NewStat)
+{
+	Name = NewName;
+	Stat = NewStat;
+	cout << "ACharacter 생성됨: " << Name << " (HP: " << Stat.Hp << ")" << endl;
+}
+
+ACharacter::~ACharacter()
+{
+	cout << Name << "이(가) 퇴장합니다." << endl;
+}
+
+void ACharacter::Attack(ACharacter* Target)
+{
+	//Atk로 직접 접근해도 좋고, 지역변수에 값을 넣어 호출해도 좋습니다.
+	//1~10사이의 숫자가 나오면 
+	bool bCritical = dis(gen) <= Stat.Critical;
+	int Damage = Stat.Atk;
+	if (bCritical)
+	{
+		Damage = static_cast<int>(Damage * 1.5f);
+	}
+	
+	string CriticalMessage = bCritical ? "강력하게" : "";
+	cout << Name << "이(가)"<< CriticalMessage << "공격합니다" << endl;
+	Target->TakeDamage(Damage);
+}
+
+void ACharacter::TakeDamage(int DamageAmount)
+{
+	//데미지 처리 부분
+	DamageAmount -= Stat.Def;
+	bool bMinimumDamage = DamageAmount <= 0;
+	
+	//max() -> ex) DamageAmount 0 이하면, 무조건 1이 반환.
+	DamageAmount = std::max(1, DamageAmount); 
+	
+	//HP 처리부분
+	Stat.Hp -= DamageAmount;
+	Stat.Hp = std::max(0,Stat.Hp);
+	
+	//메시지 처리 부분
+	if (bMinimumDamage)
+	{
+		cout << "데미지가 현저히 적어 최소 데미지1을 적용합니다." << endl;
+	}
+	cout << Name << "가 " << DamageAmount << "의 피해를 입었습니다." << endl;
+	cout << Name << " 남은체력:" << Stat.Hp << endl;
+}
