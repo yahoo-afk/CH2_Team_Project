@@ -17,7 +17,7 @@ ACharacter::~ACharacter()
 	cout << Name << "이(가) 퇴장합니다." << endl;
 }
 
-void ACharacter::Attack(ACharacter* Target)
+FAttackResult ACharacter::Attack(ACharacter* Target)
 {
 	//Atk로 직접 접근해도 좋고, 지역변수에 값을 넣어 호출해도 좋습니다.
 	//1~10사이의 숫자가 나오면 
@@ -27,27 +27,25 @@ void ACharacter::Attack(ACharacter* Target)
 	{
 		Damage = static_cast<int>(Damage * 1.5f);
 	}
-	Target->TakeDamage(Damage);
+	int FinalDamage = Target->TakeDamage(Damage);
+	FAttackResult Result;
+	Result.Damage = FinalDamage;
+	Result.bCritical = bCritical;
+	return Result;
 }
 
-void ACharacter::TakeDamage(int DamageAmount)
+int  ACharacter::TakeDamage(int DamageAmount)
 {
 	//데미지 처리 부분
 	DamageAmount -= Stat.Def;
 	bool bMinimumDamage = DamageAmount <= 0;
-	
+
 	//max() -> ex) DamageAmount 0 이하면, 무조건 1이 반환.
-	DamageAmount = std::max(1, DamageAmount); 
-	
+	DamageAmount = std::max(1, DamageAmount);
+
 	//HP 처리부분
 	Stat.Hp -= DamageAmount;
-	Stat.Hp = std::max(0,Stat.Hp);
-	
-	//메시지 처리 부분
-	if (bMinimumDamage)
-	{
-		cout << "데미지가 현저히 적어 최소 데미지1을 적용합니다." << endl;
-	}
-	cout << Name << "가 " << DamageAmount << "의 피해를 입었습니다." << endl;
-	cout << Name << " 남은체력:" << Stat.Hp << endl;
+	Stat.Hp = std::max(0, Stat.Hp);
+
+	return DamageAmount;
 }

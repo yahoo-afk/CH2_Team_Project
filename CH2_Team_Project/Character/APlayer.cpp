@@ -22,8 +22,16 @@ void APlayer::UseItem()
 void APlayer::LevelUp()
 {
 }
-void APlayer::Attack(ACharacter* Target)
+FAttackResult APlayer::Attack(ACharacter* Target)
 {
-	cout << Name << "이(가) 대검으로 공격합니다" << endl;
-	ACharacter::Attack(Target);
+	FAttackResult Result = ACharacter::Attack(Target);
+	string AttackMessage = "이(가)대검으로 공격합니다";
+	if(Result.bCritical)
+	{
+		AttackMessage = "이(가)대검으로 목을 공격합니다";
+	}
+	cout << Name << AttackMessage << endl;
+	cout << Name << "이(가)" << Result.Damage << "만큼 데미지를 주었습니다" << endl;
+	cout << Target->GetName() << "의 남은 체력" << Target->GetHp() << "입니다" << endl;
+	return Result;
 }

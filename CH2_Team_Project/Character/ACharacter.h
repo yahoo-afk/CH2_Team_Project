@@ -11,6 +11,12 @@ struct FUnitStat
 	int Critical;
 };
 
+struct FAttackResult
+{
+	int Damage;
+	bool bCritical;
+};
+
 using namespace std;
 
 class ACharacter
@@ -30,7 +36,7 @@ public:
 	//비교 연산자의 결과는 -> bool
 	bool IsDead() const { return Stat.Hp <= 0; }
 
-	virtual void Attack(ACharacter* Target);
-	void TakeDamage(int DamageAmount);
+	virtual FAttackResult Attack(ACharacter* Target);
+	int TakeDamage(int DamageAmount);
 };
  
