@@ -27,9 +27,6 @@ void ACharacter::Attack(ACharacter* Target)
 	{
 		Damage = static_cast<int>(Damage * 1.5f);
 	}
-	
-	string CriticalMessage = bCritical ? "강력하게" : "";
-	cout << Name << "이(가)"<< CriticalMessage << "공격합니다" << endl;
 	Target->TakeDamage(Damage);
 }
 

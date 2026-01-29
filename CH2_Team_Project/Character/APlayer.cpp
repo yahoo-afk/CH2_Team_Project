@@ -24,5 +24,6 @@ void APlayer::LevelUp()
 }
 void APlayer::Attack(ACharacter* Target)
 {
+	cout << Name << "이(가) 대검으로 공격합니다" << endl;
 	ACharacter::Attack(Target);
 }
