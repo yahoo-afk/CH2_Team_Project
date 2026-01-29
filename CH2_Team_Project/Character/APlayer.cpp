@@ -22,3 +22,7 @@ void APlayer::UseItem()
 void APlayer::LevelUp()
 {
 }
+void APlayer::Attack(ACharacter* Target)
+{
+	ACharacter::Attack(Target);
+}

@@ -30,7 +30,7 @@ public:
 	//비교 연산자의 결과는 -> bool
 	bool IsDead() const { return Stat.Hp <= 0; }
 
-	void Attack(ACharacter* Target);
+	virtual void Attack(ACharacter* Target);
 	void TakeDamage(int DamageAmount);
 };
  
