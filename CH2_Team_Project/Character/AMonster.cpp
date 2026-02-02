@@ -1,5 +1,6 @@
 ﻿#include "AMonster.h"
 
+using namespace std;
 AMonster::AMonster(const string& NewName, const FUnitStat& NewStat)
 	: ACharacter(NewName, NewStat)
 {
@@ -39,7 +40,7 @@ void AMonster::UseSkill(ACharacter* Target)
 	}
 	Stat.Mp -= 10;
 
-	int ActualDamage = TakeDamage(Stat.Atk);
+	int ActualDamage = Target->TakeDamage(Stat.Atk);
 	FAttackResult Result;
 	Result.Attacker = this;
 	Result.Target = Target;

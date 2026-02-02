@@ -3,7 +3,7 @@
 class APlayer : public ACharacter
 {
 public:
-	APlayer(const string& NewName, const FUnitStat& NewStat);
+	APlayer(const std::string& NewName, const FUnitStat& NewStat);
 	
 private:
 	int Level;

@@ -1,15 +1,10 @@
 ﻿#include "APlayer.h"
 
+using namespace std;
 
 APlayer::APlayer(const string& NewName, const FUnitStat& NewStat)
 	: ACharacter(NewName, NewStat)
 {
-	Name = "용사";
-	Stat.Hp = 200;
-	Stat.Atk = 15;
-	Stat.Def = 10;
-	Stat.Critical = 10;
-
 	Level = 1;
 	Exp = 0;
 	Gold = 0;
@@ -40,12 +35,13 @@ void APlayer::UseSkill(ACharacter* Target)
 		return;
 	}
 	Stat.Mp -= 10;
-	int ActualDamage = TakeDamage(Stat.Atk * 2);
+	
 
+	int ActualDamage = Target->TakeDamage(Stat.Atk * 2);
 	FAttackResult Result;
 	Result.Attacker = this;
 	Result.Target = Target;
-	Result.Damage = ActualDamage;
 	Result.bCritical = false;
+	Result.Damage = ActualDamage;
 	Result.PrintMessage("스킬발동: 회심의 일격...!");
 }

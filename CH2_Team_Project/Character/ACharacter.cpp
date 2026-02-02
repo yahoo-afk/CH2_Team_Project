@@ -5,6 +5,7 @@ std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dis(1, 100);
 
+using namespace std;
 
 ACharacter::ACharacter(const string& NewName, const FUnitStat& NewStat)
 {
@@ -33,10 +34,10 @@ FAttackResult ACharacter::Attack(ACharacter* Target)
 		Damage = static_cast<int>(Damage * 1.5f);
 	}
 
-	int FinalDamage = Target->TakeDamage(Damage);
 	FAttackResult Result;
 	Result.Attacker = this;
 	Result.Target = Target;
+	int FinalDamage = Target->TakeDamage(Damage);
 	Result.Damage = FinalDamage;
 	Result.bCritical = bCritical;
 	return Result;

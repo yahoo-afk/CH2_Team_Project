@@ -3,13 +3,17 @@
 #include "Character/APlayer.h"
 #include <windows.h>
 
+using namespace std;
 int main()
 {
-	ACharacter* Player = new APlayer("용사", FUnitStat (150, 50,20, 10,10));	
-	ACharacter* Monster = new AMonster("슬라임", FUnitStat(100,30,15,5,10));
+	ACharacter* Player = new APlayer("용사", FUnitStat (150, 10,20, 10,10));	
+	ACharacter* Monster = new AMonster("슬라임", FUnitStat(100,10,15,5,10));
 
 	cout << "===========데스매치 시작============" << endl;
 	Sleep(1000);
+	
+	Player->UseSkill(Monster);
+	Monster->UseSkill(Player);
 
 	while (!Player->IsDead() && !Monster->IsDead())
 	{
