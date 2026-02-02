@@ -5,8 +5,8 @@
 
 int main()
 {
-	ACharacter* Player = new APlayer("용사", { 150, 20, 10,10 });	
-	ACharacter* Monster = new AMonster("슬라임", { 100,15,5,10 });
+	ACharacter* Player = new APlayer("용사", FUnitStat (150, 50,20, 10,10));	
+	ACharacter* Monster = new AMonster("슬라임", FUnitStat(100,30,15,5,10));
 
 	cout << "===========데스매치 시작============" << endl;
 	Sleep(1000);

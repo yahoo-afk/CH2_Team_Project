@@ -9,7 +9,7 @@ APlayer::APlayer(const string& NewName, const FUnitStat& NewStat)
 	Stat.Atk = 15;
 	Stat.Def = 10;
 	Stat.Critical = 10;
-	
+
 	Level = 1;
 	Exp = 0;
 	Gold = 0;
@@ -26,12 +26,26 @@ FAttackResult APlayer::Attack(ACharacter* Target)
 {
 	FAttackResult Result = ACharacter::Attack(Target);
 	string AttackMessage = "이(가)대검으로 공격합니다";
-	if(Result.bCritical)
+	if (Result.bCritical)
 	{
 		AttackMessage = "이(가)대검으로 목을 공격합니다";
 	}
-	cout << Name << AttackMessage << endl;
-	cout << Name << "이(가)" << Result.Damage << "만큼 데미지를 주었습니다" << endl;
-	cout << Target->GetName() << "의 남은 체력" << Target->GetHp() << "입니다" << endl;
+	Result.PrintMessage(AttackMessage);
 	return Result;
+}
+void APlayer::UseSkill(ACharacter* Target)
+{
+	if (Stat.Mp < 10)
+	{
+		return;
+	}
+	Stat.Mp -= 10;
+	int ActualDamage = TakeDamage(Stat.Atk * 2);
+
+	FAttackResult Result;
+	Result.Attacker = this;
+	Result.Target = Target;
+	Result.Damage = ActualDamage;
+	Result.bCritical = false;
+	Result.PrintMessage("스킬발동: 회심의 일격...!");
 }

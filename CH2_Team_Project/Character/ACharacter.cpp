@@ -5,10 +5,15 @@ std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<int> dis(1, 100);
 
+
 ACharacter::ACharacter(const string& NewName, const FUnitStat& NewStat)
 {
 	Name = NewName;
 	Stat = NewStat;
+
+	Stat.Hp = Stat.MaxHp;
+	Stat.Mp = Stat.MaxMp;
+
 	cout << "ACharacter 생성됨: " << Name << " (HP: " << Stat.Hp << ")" << endl;
 }
 
@@ -27,8 +32,11 @@ FAttackResult ACharacter::Attack(ACharacter* Target)
 	{
 		Damage = static_cast<int>(Damage * 1.5f);
 	}
+
 	int FinalDamage = Target->TakeDamage(Damage);
 	FAttackResult Result;
+	Result.Attacker = this;
+	Result.Target = Target;
 	Result.Damage = FinalDamage;
 	Result.bCritical = bCritical;
 	return Result;
@@ -48,4 +56,20 @@ int  ACharacter::TakeDamage(int DamageAmount)
 	Stat.Hp = std::max(0, Stat.Hp);
 
 	return DamageAmount;
+}
+
+void FAttackResult::PrintMessage(const string& AttackMessage)
+{
+	cout << "-------------------------------------------------" << endl;
+	Attacker->PrintName();
+	cout << AttackMessage << '\n';
+
+	Target->PrintName();
+	cout << "'받은 데미지': " << Damage << "-> '남은 HP': " << Target->GetHp() << endl;
+	cout << "-------------------------------------------------" << endl;
+}
+
+void ACharacter::PrintName()
+{
+	cout << "[" << Name << "] ";
 }

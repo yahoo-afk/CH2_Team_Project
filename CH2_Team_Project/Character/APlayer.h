@@ -14,5 +14,6 @@ public:
 	void UseItem();
 	void LevelUp();
 	FAttackResult Attack(ACharacter* Target) override;
+	void UseSkill(ACharacter* Target)override;
 };
 

@@ -1,9 +1,9 @@
 ﻿#include "AMonster.h"
 
-AMonster::AMonster(const string& NewName,const FUnitStat& NewStat)
+AMonster::AMonster(const string& NewName, const FUnitStat& NewStat)
 	: ACharacter(NewName, NewStat)
 {
-	
+
 }
 
 FAttackResult AMonster::Attack(ACharacter* Target)
@@ -14,8 +14,38 @@ FAttackResult AMonster::Attack(ACharacter* Target)
 	{
 		AttackMessage = "이(가)달라붙어 산성으로 공격합니다";
 	}
-	cout << Name << AttackMessage << endl;
-	cout << Name << "이(가)" << Result.Damage << "만큼 데미지를 주었습니다" << endl;
-	cout << Target->GetName() << "의 남은 체력" << Target->GetHp() << "입니다" << endl;
+	Result.PrintMessage(AttackMessage);
 	return Result;
+}
+
+void AMonster::Heal(int DamageAmount)
+{
+	int PrevHp = Stat.Hp;
+	Stat.Hp += DamageAmount;
+	Stat.Hp = min(Stat.Hp, Stat.MaxHp);
+
+	int ActualHeal = Stat.Hp - PrevHp;
+
+	PrintName();
+	cout << ActualHeal << " HP를 회복했습니다...!" << endl;
+}
+
+void AMonster::UseSkill(ACharacter* Target)
+{
+	int PrevHp = Stat.Hp;
+	if (Stat.Mp < 10)
+	{
+		return;
+	}
+	Stat.Mp -= 10;
+
+	int ActualDamage = TakeDamage(Stat.Atk);
+	FAttackResult Result;
+	Result.Attacker = this;
+	Result.Target = Target;
+	Result.Damage = ActualDamage;
+	Result.bCritical = false;
+	Result.PrintMessage("스킬발동: 흡혈 ....!");
+
+	Heal(ActualDamage);
 }
