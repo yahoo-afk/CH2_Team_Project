@@ -74,3 +74,24 @@ void ACharacter::PrintName()
 {
 	cout << "[" << Name << "] ";
 }
+
+void ACharacter::PlayTurn(ACharacter* Target)
+{
+	const int SkillUseMp = 10;
+	const int AttackRate = 1;
+	const int dice = dis(gen);
+
+	if (dice <= AttackRate)
+	{
+		Attack(Target);
+		return;
+	}
+
+	if (Stat.Mp < SkillUseMp)
+	{
+		Attack(Target);
+		return;
+	}
+
+	UseSkill(Target);
+}

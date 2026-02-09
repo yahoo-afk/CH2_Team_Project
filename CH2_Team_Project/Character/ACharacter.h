@@ -65,4 +65,5 @@ public:
 
 	virtual void UseSkill(ACharacter* Target) = 0;
 	void PrintName();
+	void PlayTurn(ACharacter*Target);
 };

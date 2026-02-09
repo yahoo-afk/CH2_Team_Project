@@ -4,36 +4,45 @@
 #include <windows.h>
 
 using namespace std;
+
+void WaitForPlayerInput()
+{
+	system("pause");
+	cout << endl;
+}
+
+
+
 int main()
 {
-	ACharacter* Player = new APlayer("용사", FUnitStat (150, 10,20, 10,10));	
-	ACharacter* Monster = new AMonster("슬라임", FUnitStat(100,10,15,5,10));
+	ACharacter* Player = new APlayer("용사", FUnitStat(150, 50, 20, 10, 10));
+	ACharacter* Monster = new AMonster("슬라임", FUnitStat(150, 50, 18, 9, 10));
 
 	cout << "===========데스매치 시작============" << endl;
-	Sleep(1000);
-	
-	Player->UseSkill(Monster);
-	Monster->UseSkill(Player);
+
 
 	while (!Player->IsDead() && !Monster->IsDead())
 	{
-		Player->Attack(Monster);
+		Player->PlayTurn(Monster);
+
 		if (Monster->IsDead())
 		{
 			cout << "몬스터가 쓰러졌습니다" << endl;
 			cout << "승리했습니다!! 우리의영웅 용사!!" << endl;
 			break;
 		}
-		Sleep(500);
-		Monster->Attack(Player);
+		WaitForPlayerInput();
+
+
+		Monster->PlayTurn(Player);
+
 		if (Player->IsDead())
 		{
-			cout << "용사는 쓰러졌다 패배했습니다" << endl;
+			cout << "용사는 쓰러졌다. 패배했습니다" << endl;
 			break;
 		}
+		WaitForPlayerInput();
 	}
-	
-	Sleep(1000);
 	
 	delete Player;
 	delete Monster;

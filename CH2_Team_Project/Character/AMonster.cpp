@@ -34,10 +34,6 @@ void AMonster::Heal(int DamageAmount)
 void AMonster::UseSkill(ACharacter* Target)
 {
 	int PrevHp = Stat.Hp;
-	if (Stat.Mp < 10)
-	{
-		return;
-	}
 	Stat.Mp -= 10;
 
 	int ActualDamage = Target->TakeDamage(Stat.Atk);

@@ -28,12 +28,9 @@ FAttackResult APlayer::Attack(ACharacter* Target)
 	Result.PrintMessage(AttackMessage);
 	return Result;
 }
+
 void APlayer::UseSkill(ACharacter* Target)
 {
-	if (Stat.Mp < 10)
-	{
-		return;
-	}
 	Stat.Mp -= 10;
 	
 
