@@ -21,27 +21,30 @@
     <ClCompile Include="CH2_Team_Project.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ACharacter.cpp">
-      <Filter>Character</Filter>
-    </ClCompile>
-    <ClCompile Include="APlayer.cpp">
+    <ClCompile Include="Character\ACharacter.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AMonster.cpp">
+    <ClCompile Include="Character\AMonster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\APlayer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ABattleManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Type.h">
+    <ClInclude Include="Character\ACharacter.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="APlayer.h">
+    <ClInclude Include="Character\AMonster.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ACharacter.h">
-      <Filter>Character</Filter>
+    <ClInclude Include="Character\APlayer.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="AMonster.h">
+    <ClInclude Include="ABattleManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

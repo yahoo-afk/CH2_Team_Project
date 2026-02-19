@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ABattleManager.cpp" />
     <ClCompile Include="CH2_Team_Project.cpp" />
     <ClCompile Include="Character\ACharacter.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
@@ -354,6 +355,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ABattleManager.h" />
     <ClInclude Include="Character\ACharacter.h" />
     <ClInclude Include="Character\AMonster.h" />
     <ClInclude Include="Character\APlayer.h" />

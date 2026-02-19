@@ -78,7 +78,7 @@ void ACharacter::PrintName()
 void ACharacter::PlayTurn(ACharacter* Target)
 {
 	const int SkillUseMp = 10;
-	const int AttackRate = 1;
+	const int AttackRate = 70;
 	const int dice = dis(gen);
 
 	if (dice <= AttackRate)
@@ -94,4 +94,9 @@ void ACharacter::PlayTurn(ACharacter* Target)
 	}
 
 	UseSkill(Target);
+}
+
+void ACharacter::ShowStat()
+{
+	cout << "[" << Name << "]" << "HP:" << Stat.Hp << "/" << Stat.MaxHp << "  " << "MP : " <<Stat.Mp << " / " << Stat.MaxMp << endl;
 }
