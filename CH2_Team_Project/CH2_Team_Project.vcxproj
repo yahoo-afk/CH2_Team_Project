@@ -353,12 +353,14 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Skill.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABattleManager.h" />
     <ClInclude Include="Character\ACharacter.h" />
     <ClInclude Include="Character\AMonster.h" />
     <ClInclude Include="Character\APlayer.h" />
+    <ClInclude Include="Skill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

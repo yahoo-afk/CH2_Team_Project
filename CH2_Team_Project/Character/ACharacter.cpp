@@ -77,23 +77,15 @@ void ACharacter::PrintName()
 
 void ACharacter::PlayTurn(ACharacter* Target)
 {
-	const int SkillUseMp = 10;
-	const int AttackRate = 70;
 	const int dice = dis(gen);
-
-	if (dice <= AttackRate)
+	if (dice<= 50)
 	{
 		Attack(Target);
-		return;
 	}
-
-	if (Stat.Mp < SkillUseMp)
+	else
 	{
-		Attack(Target);
-		return;
+		UseSkill(Target);
 	}
-
-	UseSkill(Target);
 }
 
 void ACharacter::ShowStat()
