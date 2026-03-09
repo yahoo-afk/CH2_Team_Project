@@ -16,32 +16,33 @@ ACharacter::ACharacter(const string& NewName, const FUnitStat& NewStat)
 	Stat.Mp = Stat.MaxMp;
 
 	cout << "ACharacter 생성됨: " << Name << " (HP: " << Stat.Hp << ")" << endl;
+
 }
 
 ACharacter::~ACharacter()
-{
+{	
 	cout << Name << "이(가) 퇴장합니다." << endl;
 }
 
-FAttackResult ACharacter::Attack(ACharacter* Target)
-{
-	//Atk로 직접 접근해도 좋고, 지역변수에 값을 넣어 호출해도 좋습니다.
-	//1~10사이의 숫자가 나오면 
-	bool bCritical = dis(gen) <= Stat.Critical;
-	int Damage = Stat.Atk;
-	if (bCritical)
-	{
-		Damage = static_cast<int>(Damage * 1.5f);
-	}
-
-	FAttackResult Result;
-	Result.Attacker = this;
-	Result.Target = Target;
-	int FinalDamage = Target->TakeDamage(Damage);
-	Result.Damage = FinalDamage;
-	Result.bCritical = bCritical;
-	return Result;
-}
+//FAttackResult ACharacter::Attack(ACharacter* Target)
+//{
+//	//Atk로 직접 접근해도 좋고, 지역변수에 값을 넣어 호출해도 좋습니다.
+//	//1~10사이의 숫자가 나오면 
+//	bool bCritical = GetRandomInt() <= Stat.Critical;
+//	int Damage = Stat.Atk;
+//	if (bCritical)
+//	{
+//		Damage = static_cast<int>(Damage * 1.5f);
+//	}
+//
+//	FAttackResult Result;
+//	Result.Attacker = this;
+//	Result.Target = Target;
+//	int FinalDamage = Target->TakeDamage(Damage);
+//	Result.Damage = FinalDamage;
+//	Result.bCritical = bCritical;
+//	return Result;
+//}
 
 int  ACharacter::TakeDamage(int DamageAmount)
 {
@@ -77,18 +78,38 @@ void ACharacter::PrintName()
 
 void ACharacter::PlayTurn(ACharacter* Target)
 {
-	const int dice = dis(gen);
-	if (dice<= 50)
-	{
-		Attack(Target);
-	}
-	else
-	{
-		UseSkill(Target);
-	}
+	//if (GetRandomInt(100)<= 49)
+	//{
+	//	//Attack(Target);
+	//}
+	//else
+	//{
+	//	UseSkill(Target);
+	//}
 }
 
 void ACharacter::ShowStat()
 {
 	cout << "[" << Name << "]" << "HP:" << Stat.Hp << "/" << Stat.MaxHp << "  " << "MP : " <<Stat.Mp << " / " << Stat.MaxMp << endl;
+}
+
+int ACharacter::GetRandomInt(int Max)
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(0 , Max-1);
+	
+	return dis(gen);
+}
+
+void ACharacter::Heal(int DamageAmount)
+{
+	int PrevHp = Stat.Hp;
+	Stat.Hp += DamageAmount;
+	Stat.Hp = min(Stat.Hp, Stat.MaxHp);
+
+	int ActualHeal = Stat.Hp - PrevHp;
+
+	PrintName();
+	cout << ActualHeal << " HP를 회복했습니다...!" << endl;
 }

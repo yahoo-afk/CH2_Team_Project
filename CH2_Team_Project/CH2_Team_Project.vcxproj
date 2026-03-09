@@ -354,6 +354,12 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="UMonsterAttackSkill.cpp" />
+    <ClCompile Include="UMonsterDefenseAttack.cpp" />
+    <ClCompile Include="UMonsterDrainSkill.cpp" />
+    <ClCompile Include="UPlayerAttackSkill.cpp" />
+    <ClCompile Include="UPlayerRandomAttack.cpp" />
+    <ClCompile Include="UPlayerStrikeSkill.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABattleManager.h" />
@@ -361,6 +367,12 @@
     <ClInclude Include="Character\AMonster.h" />
     <ClInclude Include="Character\APlayer.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="UMonsterAttackSkill.h" />
+    <ClInclude Include="UMonsterDefenseAttack.h" />
+    <ClInclude Include="UMonsterDrainSkill.h" />
+    <ClInclude Include="UPlayerAttackSkill.h" />
+    <ClInclude Include="UPlayerRandomAttack.h" />
+    <ClInclude Include="UPlayerStrikeSkill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

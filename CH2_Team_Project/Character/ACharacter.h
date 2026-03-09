@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <memory>
+#include "../Skill.h"
 
 
 class ACharacter;
@@ -52,6 +55,7 @@ public:
 
 protected:
 	std::string Name;
+	std::vector<std::unique_ptr<USkill>> Skills;
 
 public:
 	//const 함수는 멤버변수(객체의 상태)가 수정되지 않음을 의미.
@@ -60,13 +64,20 @@ public:
 	int GetMp() const { return Stat.Mp; }
 	int GetMaxHp()const { return Stat.MaxHp; }
 	int GetMaxMp()const { return Stat.MaxMp; }
-	//비교 연산자의 결과는 -> bool
+	int GetCritical()const { return Stat.Critical; }
+	int GetAttack()const { return Stat.Atk; }
+	int GetDefense()const { return Stat.Def; }
+
 	bool IsDead() const { return Stat.Hp <= 0; }
 	void ShowStat();
-	virtual FAttackResult Attack(ACharacter* Target);
 	int TakeDamage(int DamageAmount);
 
-	virtual void UseSkill(ACharacter* Target) = 0;
+	//virtual FAttackResult Attack(ACharacter* Target);
+	//virtual void UseSkill(ACharacter* Target) = 0;
+	virtual void PlayTurn(ACharacter*Target);
+
 	void PrintName();
-	void PlayTurn(ACharacter*Target);
+	void Heal(int DamageAmount);
+	int GetRandomInt(int Max = 100);
+	
 };
