@@ -64,8 +64,8 @@ public:
 	int GetMp() const { return Stat.Mp; }
 	int GetMaxHp()const { return Stat.MaxHp; }
 	int GetMaxMp()const { return Stat.MaxMp; }
-	int GetCritical()const { return Stat.Critical; }
 	int GetAttack()const { return Stat.Atk; }
+	int GetCritical()const { return Stat.Critical; }
 	int GetDefense()const { return Stat.Def; }
 
 	bool IsDead() const { return Stat.Hp <= 0; }

@@ -3,7 +3,7 @@
 class UMonsterAttackSkill:public USkill
 {
 public:
-	UMonsterAttackSkill(ACharacter* Onwer);
+	UMonsterAttackSkill(ACharacter* NewOnwer);
 	void Play(ACharacter* Target)override;
 };
 

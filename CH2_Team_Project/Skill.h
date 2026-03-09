@@ -19,7 +19,5 @@ protected:
 	ACharacter* Owner;
 	std::string Name;
 	int MpCost;
-	
-	
 };
 

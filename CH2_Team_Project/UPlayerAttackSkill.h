@@ -3,7 +3,7 @@
 class UPlayerAttackSkill:public USkill
 {
 public:
-	UPlayerAttackSkill(ACharacter* Onwer);
+	UPlayerAttackSkill(ACharacter* NewOnwer);
 
 	void Play(ACharacter* Target) override;
 };

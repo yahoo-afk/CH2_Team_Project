@@ -11,9 +11,11 @@ AMonster::AMonster(const string& NewName, const FUnitStat& NewStat)
 	Skills.push_back(make_unique<UMonsterDefenseAttack>(this));
 	Skills.push_back(make_unique<UMonsterDrainSkill>(this));
 }
+
 AMonster::~AMonster()
 {
 	
+
 }
 
 //FAttackResult AMonster::Attack(ACharacter* Target)
